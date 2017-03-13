@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="indexstyle.css">
+</head>
+<body>
+<input class="input_box" type="text">
+<button type="button" class="add_button">Add</button>
+<div id="display_task">
+
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script>
+    debugger;
+
+    $(document).ready(function(){
+
+
+       $(".add_button").click(function(){
+
+           var input_value = $(".input_box").val() ;
+
+            var pushdata ={
+                text:input_value,
+                checked :false
+            }
+           htmlcode(pushdata);
+           data.push(pushdata);
+           localStorage.setItem('data',JSON.stringify(data));
+       });
+    });
+    var htmlcode = function(text){
+        var isChecked = text.checked?"checked":'';
+        $("div#display_task").append("<div><input id='check' type='checkbox' "+isChecked+">"+ text.text+"<button type='button'>X</button>");
+    }
+    var data=[];
+    if (localStorage.getItem('data')){
+        data =JSON.parse(localStorage.getItem('data'));
+        debugger;
+        //var b=localStorage.getItem('data',JSON.parse(data));
+        for(i=0;i<data.length;i++){
+            htmlcode(data[i]);
+            }
+
+        }
+</script>
+
+</body>
+</html>
